@@ -13,7 +13,7 @@ const UserAnalytics = () => {
 
   useEffect(() => {
     if (!user_id || !grade_id || !subject_id) return;
-    fetch(`http://localhost:8000/questions/userquestionattended?user_id=${user_id}&grade_id=${grade_id}&subject_id=${subject_id}`)
+    fetch(`https://ailmsbe.onrender.com/questions/userquestionattended?user_id=${user_id}&grade_id=${grade_id}&subject_id=${subject_id}`)
       .then(res => res.json())
       .then(data => {
         setAttended(data);
