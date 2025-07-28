@@ -1,15 +1,15 @@
-# --- Stage 1: Backend (FastAPI) ---
-FROM python:3.11-slim AS backend
-WORKDIR /app/backend
-COPY backend/ /app/backend/
-RUN pip install --upgrade pip && pip install -r requirements.txt
-EXPOSE 8000
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
-
-# --- Stage 2: Frontend Build (React + CRA) ---
-FROM node:20 AS frontend
-WORKDIR /app/frontend
-COPY frontend/package*.json ./
+# Stage 1: Build React App
+FROM node:20 AS builder
+WORKDIR /app
+COPY package*.json ./
 RUN npm install --force
-COPY frontend/ .
+COPY . .
 RUN npm run build
+
+# Stage 2: Serve with lightweight HTTP server
+FROM node:20-alpine AS final
+WORKDIR /app
+COPY --from=builder /app/build ./build
+RUN npm install -g serve
+EXPOSE 3000
+CMD ["serve", "-s", "build", "-l", "3000"]

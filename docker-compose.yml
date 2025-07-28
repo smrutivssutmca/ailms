@@ -1,23 +1,12 @@
 version: '3.8'
 
 services:
-  backend:
+  frontend:
     build:
-      context: .
-      target: backend
-    working_dir: /app/backend
-    ports:
-      - '8000:8000'
-    volumes:
-      - ./backend:/app/backend
-    environment:
-      - PYTHONUNBUFFERED=1
-
-  nginx:
-    build:
-      context: .
-      target: final
+      context: ./frontend
+      dockerfile: Dockerfile
     ports:
       - '10000:10000'
-    depends_on:
-      - backend
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
