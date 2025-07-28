@@ -21,7 +21,7 @@ const Register = () => {
     setError(null);
     setLoading(true);
     try {
-      const res = await fetch('/auth/register', {
+      const res = await fetch('https://ailms-hbk9.onrender.com/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),

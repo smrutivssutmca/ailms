@@ -20,7 +20,7 @@ const Login = () => {
     setError(null);
     setLoading(true);
     try {
-      const res = await fetch('/auth/login', {
+      const res = await fetch('https://ailms-hbk9.onrender.com/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),

@@ -42,7 +42,7 @@ const Quiz = () => {
 			body.result = { question_id: result.questionId, correct: result.correct };
 		}
 		try {
-			const res = await fetch('/questions/next', {
+			const res = await fetch('https://ailms-hbk9.onrender.com/questions/next', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(body),

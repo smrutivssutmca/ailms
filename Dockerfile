@@ -13,19 +13,3 @@ COPY frontend/package*.json ./
 RUN npm install --force
 COPY frontend/ .
 RUN npm run build
-
-# --- Stage 3: Nginx to serve static frontend ---
-FROM nginx:alpine AS final
-WORKDIR /usr/share/nginx/html
-
-# Remove default nginx page
-RUN rm -rf ./*
-
-# Copy built frontend from frontend stage
-COPY --from=frontend /app/frontend/build ./
-
-# Copy custom nginx config (if exists)
-COPY backend/nginx.conf /etc/nginx/nginx.conf
-
-EXPOSE 10000
-CMD ["nginx", "-g", "daemon off;"]
