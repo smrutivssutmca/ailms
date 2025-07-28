@@ -13,16 +13,11 @@ services:
     environment:
       - PYTHONUNBUFFERED=1
 
-  frontend:
+  nginx:
     build:
       context: .
-      target: frontend
-    working_dir: /app/frontend
+      target: final
     ports:
-      - '3000:3000'
-    volumes:
-      - ./frontend:/app/frontend
-    environment:
-      - CHOKIDAR_USEPOLLING=true
+      - '10000:10000'
     depends_on:
       - backend
