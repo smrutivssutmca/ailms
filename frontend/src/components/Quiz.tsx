@@ -42,7 +42,7 @@ const Quiz = () => {
 			body.result = { question_id: result.questionId, correct: result.correct };
 		}
 		try {
-			const res = await fetch('http://localhost:8000/questions/next', {
+			const res = await fetch('/questions/next', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(body),
@@ -76,7 +76,7 @@ const Quiz = () => {
 	};
 
 	const handleSubmit = async () => {
-		const res = await fetch('http://localhost:8000/questions/submit', {
+		const res = await fetch('/questions/submit', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
