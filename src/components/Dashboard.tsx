@@ -28,13 +28,13 @@ const Dashboard = () => {
 
   useEffect(() => {
     // Fetch grades on component mount
-    fetch('https://ailms-hbk9.onrender.com/questions/grades')
+    fetch('https://ailmsbe.onrender.com/questions/grades')
       .then(res => res.json())
       .then(setGrades);
 
     // Fetch user results
     const userId = JSON.parse(localStorage.getItem('user') || '{}').id;
-    fetch(`https://ailms-hbk9.onrender.com/questions/userresult?user_id=${userId}`)
+    fetch(`https://ailmsbe.onrender.com/questions/userresult?user_id=${userId}`)
       .then(res => res.json())
       .then(setUserResults);
   }, []);
@@ -42,7 +42,7 @@ const Dashboard = () => {
   useEffect(() => {
     if (selectedGrade !== null) {
       // Fetch subjects for the selected grade
-      fetch(`https://ailms-hbk9.onrender.com/questions/subjects?grade=${selectedGrade}`)
+      fetch(`https://ailmsbe.onrender.com/questions/subjects?grade=${selectedGrade}`)
         .then(res => res.json())
         .then(setSubjects);
     }
@@ -51,7 +51,7 @@ const Dashboard = () => {
   useEffect(() => {
     if (selectedSubject) {
       // Fetch topics for the selected subject
-      fetch(`https://ailms-hbk9.onrender.com/questions/topics?subject_id=${selectedSubject.id}`)
+      fetch(`https://ailmsbe.onrender.com/questions/topics?subject_id=${selectedSubject.id}`)
         .then(res => res.json())
         .then(setTopics);
     }
