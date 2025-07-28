@@ -16,6 +16,6 @@ RUN npm install --force && npm run build
 FROM nginx:alpine AS final
 WORKDIR /usr/share/nginx/html
 COPY --from=frontend /app/frontend/build .
-COPY backend/nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 EXPOSE 10000
 CMD ["nginx", "-g", "daemon off;"]
