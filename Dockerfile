@@ -11,5 +11,5 @@ FROM node:20-alpine AS final
 WORKDIR /app
 COPY --from=builder /app/build ./build
 RUN npm install -g serve
-EXPOSE 3000
-CMD ["serve", "-s", "build", "-l", "3000"]
+EXPOSE 10000
+CMD ["serve", "-s", "build", "-l", "10000"]
